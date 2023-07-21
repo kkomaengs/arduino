@@ -11,12 +11,14 @@ SimpleDHT11 dht11(pinDHT11);
 
 void setup() {
   Serial.begin(9600);
+  
+  
   lcd.init();
   // Print a message to the LCD.
   lcd.backlight();
   lcd.setCursor(3,0);
   lcd.print("Hello, world!");
-  lcd.setCursor(2,1);
+  lcd.setCursor(3,1);
   lcd.print("myeungmun!");
 }
 
@@ -37,19 +39,25 @@ void loop() {
   Serial.print("Sample OK: ");
   Serial.print((int)temperature); Serial.print(" *C, "); 
   Serial.print((int)humidity); Serial.println(" H");
-
+    int t=temperature;
+    int h=humidity;
   lcd.init();
   // Print a message to the LCD.
   lcd.backlight();
   lcd.setCursor(0,0);
   lcd.print("Temp = ");
   lcd.setCursor(7,0);
-  lcd.println(temperature);
-  lcd.print("");
+  lcd.println(t);
+    lcd.setCursor(9,0);
+    lcd.write(223); 
+    lcd.setCursor(10,0);
+    lcd.print("C"); 
   lcd.setCursor(0,1);
   lcd.print("Humi = ");
   lcd.setCursor(7,1);
-  lcd.println(humidity);
+  lcd.println(h);
+  lcd.setCursor(9,1);
+  lcd.print("  ");
   lcd.print("%");  // DHT11 sampling rate is 1HZ.
   delay(1500);
 }
